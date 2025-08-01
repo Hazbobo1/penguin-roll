@@ -16,13 +16,13 @@
             background-size: cover;
             background-attachment: fixed;
             
-            /* New: Use flexbox to center content */
+            /* Use flexbox to center the content */
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
-        /* New: Styles for the content box */
+        /* Styles for the content box */
         .content-box {
             background-color: rgba(0, 0, 0, 0.7); /* Black with 70% opacity */
             color: white;
@@ -36,25 +36,16 @@
             margin-top: 0;
         }
 
-        /* New: Styles for the form elements */
-        form {
-            display: flex;
-            flex-direction: column;
-        }
-
-        input, textarea, button {
-            font-size: 1rem;
-            padding: 10px;
-            margin-bottom: 15px;
-            border-radius: 5px;
-            border: none;
-        }
-
-        button {
-            background-color: #3498db;
-            color: white;
-            cursor: pointer;
+        /* New: Styles for the email link */
+        .content-box a {
+            color: #ffffff;
             font-weight: bold;
+            font-size: 1.2rem;
+            text-decoration: none; /* Removes the default underline */
+        }
+
+        .content-box a:hover {
+            text-decoration: underline; /* Adds underline when you hover over it */
         }
     </style>
 </head>
@@ -62,17 +53,9 @@
 
     <div class="content-box">
         <h1>Contact Us</h1>
-        <p>Have a question? Send us a message!</p>
+        <p>Have a question or want to get in touch?</p>
         
-        <form action="https://formspree.io/f/xkgzzaaa" method="POST">
-            <label for="email" style="display:none;">Your Email</label>
-            <input type="email" name="email" placeholder="Your email address" required>
-            
-            <label for="message" style="display:none;">Message</label>
-            <textarea name="message" placeholder="Your message" rows="5" required></textarea>
-            
-            <button type="submit">Send</button>
-        </form>
+        <a href="mailto:your.email@example.com">Send us an email</a>
     </div>
 
 </body>
