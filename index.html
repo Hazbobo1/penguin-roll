@@ -111,6 +111,23 @@
         .contact-link a:hover {
             text-decoration: underline;
         }
+        
+        /* --- Mute Button --- */
+        #mute-btn {
+            position: absolute;
+            bottom: 20px;
+            right: 30px;
+            z-index: 10;
+            cursor: pointer;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 900;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.4);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+        }
 
         /* CSS for the Snow */
         #snow-container {
@@ -141,6 +158,8 @@
     </style>
 </head>
 <body>
+    
+    <audio id="background-music" src="background-music.mp3" loop autoplay></audio>
 
     <div id="menu-icon">
         <div></div>
@@ -158,9 +177,33 @@
         <a href="mailto:admin@icehop.xyz">Contact Us</a>
     </div>
 
+    <div id="mute-btn">Mute</div>
+
     <div id="snow-container"></div>
 
     <script>
+        // --- Audio Controls ---
+        const music = document.getElementById('background-music');
+        const muteBtn = document.getElementById('mute-btn');
+        
+        // Try to play music initially, browsers might block this until user interaction
+        music.play().catch(error => {
+            console.log("Audio autoplay was prevented. Waiting for user interaction.");
+        });
+
+        muteBtn.addEventListener('click', () => {
+            if (music.muted) {
+                music.muted = false;
+                muteBtn.textContent = 'Mute';
+            } else {
+                music.muted = true;
+                muteBtn.textContent = 'Unmute';
+            }
+            // Ensure music plays on the first click if it was blocked
+            music.play();
+        });
+
+
         // --- Sidebar Functionality ---
         const menuIcon = document.getElementById('menu-icon');
         const sidebar = document.getElementById('sidebar');
@@ -168,11 +211,14 @@
 
         menuIcon.addEventListener('click', () => {
             sidebar.classList.add('open');
+            // Ensure music plays on the first click if it was blocked
+            music.play();
         });
 
         closeBtn.addEventListener('click', () => {
             sidebar.classList.remove('open');
         });
+
 
         // --- Snow Effect ---
         const snowContainer = document.getElementById('snow-container');
