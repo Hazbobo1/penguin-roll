@@ -6,21 +6,23 @@
     <title>My Game - Coming Soon!</title>
 
     <style>
-        body {
-            background-color: #000000; /* Black background */
+        body, html {
             margin: 0;
-            display: grid;
-            place-content: center;
-            min-height: 100vh;
+            padding: 0;
+            height: 100%;
         }
-        img {
-            max-width: 90%; /* Ensures the image fits on smaller screens */
-            max-height: 90vh;
+        body {
+            /* --- CHANGE THIS FILENAME --- */
+            background-image: url('coming-soon-art');
+
+            /* Make the background image cover the whole page */
+            height: 100vh; /* 100% of the viewport height */
+            background-position: center; /* Center the image */
+            background-repeat: no-repeat; /* Do not repeat the image */
+            background-size: cover; /* Scale the image to cover the entire screen */
         }
     </style>
 </head>
 <body>
-    <img src="coming-soon-art.jpg" alt="Coming Soon">
-
-</body>
+    </body>
 </html>
