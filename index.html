@@ -30,21 +30,19 @@
         }
 
         .contact-link a {
-            /* New: Apply the "Nunito" font */
             font-family: 'Nunito', sans-serif;
-            font-weight: 900; /* Use the extra-bold version we imported */
-
+            font-weight: 900;
             color: white;
-            font-size: 1.2rem; /* Slightly larger for the thicker font */
+            font-size: 1.2rem;
             text-decoration: none;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Slightly stronger shadow for readability */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
         }
 
         .contact-link a:hover {
             text-decoration: underline;
         }
 
-        /* --- CSS for the Snow --- */
+        /* CSS for the Snow */
         #snow-container {
             position: fixed;
             top: 0;
@@ -88,7 +86,8 @@
             const snowflake = document.createElement('div');
             snowflake.className = 'snowflake';
 
-            const size = Math.random() * 4 + 1;
+            // Updated line for larger snowflakes
+            const size = Math.random() * 6 + 2; // Size between 2px and 8px
             snowflake.style.width = `${size}px`;
             snowflake.style.height = `${size}px`;
 
