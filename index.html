@@ -15,23 +15,24 @@
             margin: 0;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             height: 100vh;
+            
+            /* Safety net: a background color that matches your theme */
+            background-color: #92c4f4;
+
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
             background-attachment: fixed;
             overflow: hidden;
 
-            /* By default, use the mobile background image.
-               *** IMPORTANT: Rename 'mobile-background.jpg' to whatever you called your new mobile file. ***
-            */
-            background-image: url('mobile-background.jpg');
+            /* Using your specified mobile background image */
+            background-image: url('mobile-background.jpeg');
         }
 
         /* --- Media Query for Larger Screens --- */
-        /* When the screen is 769px or wider, these styles will apply */
         @media (min-width: 769px) {
             body {
-                /* Switch to your original desktop image on larger screens */
+                /* This uses your original desktop image */
                 background-image: url('coming-soon-art.jpg');
             }
         }
@@ -111,10 +112,6 @@
             snowflake.style.opacity = Math.random();
             snowContainer.appendChild(snowflake);
         }
-    </script>
-
-</body>
-</html>
     </script>
 
 </body>
