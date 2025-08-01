@@ -1,3 +1,6 @@
+Of course. Here is the complete code updated with the new `coming-soon-art.png` filename.
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,66 +35,11 @@
         /* --- Media Query for Larger Screens --- */
         @media (min-width: 769px) {
             body {
-                /* This uses your original desktop image */
-                background-image: url('coming-soon-art.jpg');
+                /* This uses your original desktop image with the new .png extension */
+                background-image: url('coming-soon-art.png');
             }
         }
 
-        /* --- Menu Icon (Top Left) --- */
-        #menu-icon {
-            position: absolute;
-            top: 20px;
-            left: 30px;
-            z-index: 20; /* Make sure it's above other elements */
-            cursor: pointer;
-        }
-
-        #menu-icon div {
-            width: 35px;
-            height: 4px;
-            background-color: white;
-            margin: 6px 0;
-            border-radius: 2px;
-            box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
-        }
-
-        /* --- Sidebar (Hidden by default) --- */
-        #sidebar {
-            position: fixed;
-            top: 0;
-            left: -100%; /* Start off-screen */
-            width: 300px;
-            max-width: 80%; /* Ensure it doesn't take up the whole screen on mobile */
-            height: 100%;
-            background-color: rgba(25, 45, 85, 0.9); /* A semi-transparent dark blue */
-            backdrop-filter: blur(5px);
-            z-index: 30; /* Highest z-index */
-            transition: left 0.3s ease-in-out;
-            color: white;
-            font-family: 'Nunito', sans-serif;
-            padding: 20px;
-            box-sizing: border-box; /* Ensures padding doesn't add to the width */
-        }
-        
-        /* --- Sidebar Open State --- */
-        #sidebar.open {
-            left: 0; /* Slide into view */
-        }
-        
-        #sidebar h2 {
-            margin-top: 40px;
-        }
-        
-        #close-btn {
-            position: absolute;
-            top: 10px;
-            right: 25px;
-            font-size: 36px;
-            font-weight: 900;
-            cursor: pointer;
-        }
-
-        /* --- Contact Link (Top Right) --- */
         .contact-link {
             position: absolute;
             top: 20px;
@@ -142,18 +90,6 @@
 </head>
 <body>
 
-    <div id="menu-icon">
-        <div></div>
-        <div></div>
-        <div></div>
-    </div>
-
-    <div id="sidebar">
-        <span id="close-btn">&times;</span>
-        <h2>About Us</h2>
-        <p>We are a passionate team of developers creating fun and engaging games for everyone to enjoy. Stay tuned for our first official launch, penguin hop!</p>
-    </div>
-
     <div class="contact-link">
         <a href="mailto:admin@icehop.xyz">Contact Us</a>
     </div>
@@ -161,20 +97,6 @@
     <div id="snow-container"></div>
 
     <script>
-        // --- Sidebar Functionality ---
-        const menuIcon = document.getElementById('menu-icon');
-        const sidebar = document.getElementById('sidebar');
-        const closeBtn = document.getElementById('close-btn');
-
-        menuIcon.addEventListener('click', () => {
-            sidebar.classList.add('open');
-        });
-
-        closeBtn.addEventListener('click', () => {
-            sidebar.classList.remove('open');
-        });
-
-        // --- Snow Effect ---
         const snowContainer = document.getElementById('snow-container');
         const snowflakeCount = 100;
 
@@ -197,3 +119,4 @@
 
 </body>
 </html>
+```
