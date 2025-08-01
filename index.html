@@ -15,25 +15,26 @@
             margin: 0;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             height: 100vh;
-            
-            /* Safety net: a background color that matches your theme */
-            background-color: #92c4f4;
-
+            background-color: #92c4f4; /* Safety net color */
             background-position: center;
             background-repeat: no-repeat;
-            background-size: cover; /* This makes the image fill the entire screen */
+            background-size: cover;
             background-attachment: fixed;
-            overflow: hidden;
+            overflow-x: hidden; /* Prevent horizontal scrollbar */
+        }
 
-            /* Using your specified mobile background image */
-            background-image: url('mobile-background.jpg');
+        .content {
+            height: 100%;
+            width: 100%;
+            position: relative;
+            background-image: url('mobile-background.jpg'); /* Mobile background */
+            transition: transform 0.3s ease-in-out;
         }
 
         /* --- Media Query for Larger Screens --- */
         @media (min-width: 769px) {
-            body {
-                /* This uses your original desktop image with the new .png extension */
-                background-image: url('coming-soon-art.png');
+            .content {
+                background-image: url('coming-soon-art.png'); /* Desktop background */
             }
         }
 
@@ -57,9 +58,77 @@
             text-decoration: underline;
         }
 
-        /* CSS for the Snow */
-        #snow-container {
+        /* --- Sidebar and Menu Styles --- */
+        .menu-toggle {
             position: fixed;
+            top: 20px;
+            left: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px; /* Adjusted height for 3px lines */
+            cursor: pointer;
+            z-index: 20;
+        }
+
+        .menu-toggle span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background: white;
+            border-radius: 3px;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -300px; /* Start off-screen */
+            width: 300px;
+            height: 100%;
+            background: rgba(30, 30, 30, 0.9); /* Darker, slightly more opaque */
+            color: white;
+            padding: 20px 25px;
+            box-sizing: border-box;
+            z-index: 15;
+            transition: left 0.3s ease-in-out;
+        }
+
+        .sidebar.open {
+            left: 0;
+        }
+
+        .sidebar h2 {
+            font-family: 'Nunito', sans-serif;
+            font-weight: 900;
+            margin-top: 40px;
+            margin-bottom: 15px;
+        }
+
+        .sidebar p {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .close-sidebar {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            color: white;
+            border: none;
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+        .content.sidebar-open {
+            transform: translateX(300px);
+        }
+        
+        /* --- Snow Styles --- */
+        #snow-container {
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
@@ -76,31 +145,41 @@
         }
 
         @keyframes fall {
-            0% {
-                transform: translateY(-10vh);
-            }
-            100% {
-                transform: translateY(110vh);
-            }
+            0% { transform: translateY(-10vh); }
+            100% { transform: translateY(110vh); }
         }
     </style>
 </head>
 <body>
 
-    <div class="contact-link">
-        <a href="mailto:admin@icehop.xyz">Contact Us</a>
+    <div class="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
     </div>
 
-    <div id="snow-container"></div>
+    <div class="sidebar">
+        <button class="close-sidebar">&times;</button>
+        <h2>About Us</h2>
+        <p>We are a passionate team of developers building a Penguin world for you to enjoy!</p>
+        <p>Come back soon to experience our first game, Penguin Hop.</p>
+    </div>
+
+    <div class="content">
+        <div class="contact-link">
+            <a href="mailto:admin@icehop.xyz">Contact Us</a>
+        </div>
+        <div id="snow-container"></div>
+    </div>
 
     <script>
+        // Snowfall Script
         const snowContainer = document.getElementById('snow-container');
         const snowflakeCount = 100;
 
         for (let i = 0; i < snowflakeCount; i++) {
             const snowflake = document.createElement('div');
             snowflake.className = 'snowflake';
-
             const size = Math.random() * 6 + 2;
             snowflake.style.width = `${size}px`;
             snowflake.style.height = `${size}px`;
@@ -112,6 +191,22 @@
             snowflake.style.opacity = Math.random();
             snowContainer.appendChild(snowflake);
         }
+
+        // Sidebar Script
+        const menuToggle = document.querySelector('.menu-toggle');
+        const sidebar = document.querySelector('.sidebar');
+        const closeSidebar = document.querySelector('.close-sidebar');
+        const content = document.querySelector('.content');
+
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.add('open');
+            content.classList.add('sidebar-open');
+        });
+
+        closeSidebar.addEventListener('click', () => {
+            sidebar.classList.remove('open');
+            content.classList.remove('sidebar-open');
+        });
     </script>
 
 </body>
