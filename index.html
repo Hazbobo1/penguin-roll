@@ -5,45 +5,106 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Game - Coming Soon!</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=swap" rel="stylesheet">
+
     <style>
         body {
             margin: 0;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-image: url('coming-soon-art.jpg'); /* Make sure filename is correct */
+            background-image: url('coming-soon-art.jpg');
             height: 100vh;
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
             background-attachment: fixed;
+            overflow: hidden; 
         }
 
-        /* New: Styles for the top-right contact link */
         .contact-link {
-            position: absolute; /* Position relative to the page */
-            top: 20px;          /* 20px from the top */
-            right: 30px;        /* 30px from the right */
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            z-index: 10;
         }
 
         .contact-link a {
+            /* New: Apply the "Nunito" font */
+            font-family: 'Nunito', sans-serif;
+            font-weight: 900; /* Use the extra-bold version we imported */
+
             color: white;
-            font-size: 1.1rem;
-            font-weight: bold;
+            font-size: 1.2rem; /* Slightly larger for the thicker font */
             text-decoration: none;
-            /* Optional: Adds a subtle shadow to make text more readable */
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); 
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Slightly stronger shadow for readability */
         }
 
         .contact-link a:hover {
             text-decoration: underline;
+        }
+
+        /* --- CSS for the Snow --- */
+        #snow-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .snowflake {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-10vh);
+            }
+            100% {
+                transform: translateY(110vh);
+            }
         }
     </style>
 </head>
 <body>
 
     <div class="contact-link">
-        <!-- REPLACE THE EMAIL ADDRESS IN THE LINK BELOW -->
-        <a href="mailto:icehop.xyz">Contact Us</a>
+        <a href="mailto:admin@icehop.xyz">Contact Us</a>
     </div>
+
+    <div id="snow-container"></div>
+
+    <script>
+        const snowContainer = document.getElementById('snow-container');
+        const snowflakeCount = 100;
+
+        for (let i = 0; i < snowflakeCount; i++) {
+            const snowflake = document.createElement('div');
+            snowflake.className = 'snowflake';
+
+            const size = Math.random() * 4 + 1;
+            snowflake.style.width = `${size}px`;
+            snowflake.style.height = `${size}px`;
+
+            snowflake.style.left = `${Math.random() * 100}vw`;
+            
+            const duration = Math.random() * 5 + 5;
+            snowflake.style.animationDuration = `${duration}s`;
+
+            const delay = Math.random() * -5;
+            snowflake.style.animationDelay = `${delay}s`;
+            
+            snowflake.style.opacity = Math.random();
+
+            snowContainer.appendChild(snowflake);
+        }
+    </script>
 
 </body>
 </html>
